@@ -5,7 +5,8 @@ export function seedDatabase(firebase) {
     {
       userId: 'lZMMWun2IDZiuJNbjA7rLgMnhWt1',
       username: 'karl',
-      fullName: 'Karl Hadwen',
+      firstName: 'Karl',
+      lastName: 'Hadwen',
       emailAddress: 'karlhadwen@gmail.com',
       following: ['2'],
       followers: ['2', '3', '4'],
@@ -14,7 +15,8 @@ export function seedDatabase(firebase) {
     {
       userId: '2',
       username: 'raphael',
-      fullName: 'Raffaello Sanzio da Urbino',
+      firstName: 'Raffaello',
+      lastName: 'Urbino',
       emailAddress: 'raphael@sanzio.com',
       following: [],
       followers: ['lZMMWun2IDZiuJNbjA7rLgMnhWt1'],
@@ -23,7 +25,8 @@ export function seedDatabase(firebase) {
     {
       userId: '3',
       username: 'dali',
-      fullName: 'Salvador Dalí',
+      firstName: 'Salvador',
+      lastName: 'Dalí',
       emailAddress: 'salvador@dali.com',
       following: [],
       followers: ['lZMMWun2IDZiuJNbjA7rLgMnhWt1'],
@@ -32,7 +35,8 @@ export function seedDatabase(firebase) {
     {
       userId: '4',
       username: 'orwell',
-      fullName: 'George Orwell',
+      firstName: 'George',
+      lastName: 'Orwell',
       emailAddress: 'george@orwell.com',
       following: [],
       followers: ['lZMMWun2IDZiuJNbjA7rLgMnhWt1'],
