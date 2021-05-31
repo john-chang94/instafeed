@@ -16,7 +16,7 @@ export default function Register() {
     const [password, setPassword] = useState('');
 
     const [error, setError] = useState('');
-    const isInvalid = password === '' || email === '';
+    const isInvalid = username == '' || firstName == '' || lastName == '' || email == '' || password == '';
 
     const handleRegister = async (e) => {
         e.preventDefault();
