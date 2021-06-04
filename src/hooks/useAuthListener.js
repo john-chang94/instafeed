@@ -8,9 +8,11 @@ export default function useAuthListener() {
     useEffect(() => {
         const listener = firebase.auth().onAuthStateChanged((authUser) => {
             if (authUser) {
+                // Add user to local storage if signed in
                 localStorage.setItem('authUser', JSON.stringify(authUser));
                 setUser(authUser);
             } else {
+                // Remove user from local storage if signed out
                 localStorage.removeItem('authUser');
                 setUser(null);
             }

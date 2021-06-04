@@ -1,6 +1,6 @@
 export default function Timeline() {
     return (
-        <div>
+        <div className="container col-span-2">
             timeline
         </div>
     )

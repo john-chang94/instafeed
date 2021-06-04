@@ -11,8 +11,10 @@ const Dashboard = lazy(() => import('./pages/dashboard'));
 const NotFound = lazy(() => import('./pages/notFound'));
 
 function App() {
+  // Fetch signed in user
   const { user } = useAuthListener();
   return (
+    // Set user in UserContext
     <UserContext.Provider value={{ user }}>
       <div className="App">
         <Router>

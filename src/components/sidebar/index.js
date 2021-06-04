@@ -3,6 +3,7 @@ import User from './user';
 import Suggestions from './suggestions';
 
 export default function Sidebar() {
+    // Fetch signed in user from useUser hook
     const { user } = useUser();
     return (
         <div className="p-4">
