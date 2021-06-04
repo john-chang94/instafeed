@@ -12,7 +12,7 @@ export default function useUser() {
             const [res] = await getUserByUserId(user.uid);
             setActiveUser(res);
         }
-        if (user.uid) {
+        if (user) {
             getUserObjByUserId();
         }
     }, [user])

@@ -20,10 +20,10 @@ const User = ({ username, firstName, lastName }) =>
 
 export default User;
 
-User.propTypes = {
-    username: PropTypes.string.isRequired,
-    firstName: PropTypes.string.isRequired,
-    lastName: PropTypes.string.isRequired
-}
+// User.propTypes = {
+//     username: PropTypes.string.isRequired,
+//     firstName: PropTypes.string.isRequired,
+//     lastName: PropTypes.string.isRequired
+// }
 
 User.whyDidYouRender = true;
