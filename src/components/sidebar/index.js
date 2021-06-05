@@ -8,7 +8,7 @@ export default function Sidebar() {
     return (
         <div className="p-4">
             <User username={user.username} firstName={user.firstName} lastName={user.lastName} />
-            <Suggestions userId={user.userId} following={user.following} />
+            <Suggestions signedInUserId={user.userId} following={user.following} signedInUserDocId={user.docId} />
         </div>
     )
 }

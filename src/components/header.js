@@ -49,7 +49,6 @@ export default function Header() {
                                             }
                                         }}
                                     >
-                                        Sign Out {` `}
                                         <svg
                                             className="w-8 mr-6 text-black-light cursor-pointer inline-block"
                                             xmlns="http://www.w3.org/2000/svg"
@@ -68,7 +67,7 @@ export default function Header() {
                                     <div className="flex items-center cursor-pointer">
                                         <Link to={`/p/${user.displayName}`}>
                                             <img
-                                                src={`/images/avatars/${user.displayName}.jpg`}
+                                                src={`/images/avatars/${user.displayName}.png`}
                                                 alt={`${user.displayName} profile`}
                                                 className="rounded-full h-8 w-8 flex"
                                             />
