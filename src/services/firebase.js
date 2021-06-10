@@ -81,6 +81,7 @@ export async function getPhotos(userId, following) {
     const photosWithUserDetails = await Promise.all(
         userFollowedPhotos.map(async (photo) => {
             let userLikedPhoto = false;
+            // Check if user liked the photo
             if (photo.likes.includes(userId)) {
                 userLikedPhoto = true;
             }
