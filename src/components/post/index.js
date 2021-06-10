@@ -3,6 +3,7 @@ import Header from './header';
 import Image from './image';
 import Actions from './actions';
 import Footer from './footer';
+import Comments from './comments';
 
 export default function Post({ photo }) {
     const commentInput = useRef(null);
@@ -19,6 +20,12 @@ export default function Post({ photo }) {
                 handleFocus={handleFocus}
             />
             <Footer caption={photo.caption} username={photo.username} />
+            <Comments 
+                docId={photo.docId}
+                comments={photo.comments}
+                createdAt={photo.createdAt}
+                commentInput={commentInput}
+            />
         </div>
     )
 }

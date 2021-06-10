@@ -31,8 +31,8 @@ export default function Actions({ docId, totalLikes, userLikedPhoto, handleFocus
                 <div className="flex">
                     <svg
                         onClick={handleToggleLiked}
-                        onKeyDown={(event) => {
-                            if (event.key === 'Enter') {
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
                                 handleToggleLiked();
                             }
                         }}
@@ -53,8 +53,8 @@ export default function Actions({ docId, totalLikes, userLikedPhoto, handleFocus
                     </svg>
                     <svg
                         onClick={handleFocus}
-                        onKeyDown={(event) => {
-                            if (event.key === 'Enter') {
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
                                 handleFocus();
                             }
                         }}
