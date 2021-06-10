@@ -13,6 +13,15 @@ export default function AddComment({ docId, comments, setComments, commentInput 
         // Add new comment with display name to array with all previous comments
         // Array sent from Comments component
         setComments([{ displayName, comment }, ...comments])
+        setComment('');
+
+        return firebase
+            .firestore()
+            .collection('photos')
+            .doc(docId)
+            .update({
+                comments: FieldValue.arrayUnion({ displayName, comment })
+            })
     }
 
     return (
