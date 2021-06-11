@@ -5,9 +5,13 @@ import * as ROUTES from './constants/routes';
 import useAuthListener from './hooks/useAuthListener';
 import UserContext from './context/user';
 
+import ProtectedRoute from './helpers/protectedRoute';
+import IsUserSignedIn from './helpers/isUserSignedIn';
+
 const SignIn = lazy(() => import('./pages/signIn'));
 const Register = lazy(() => import('./pages/register'));
 const Dashboard = lazy(() => import('./pages/dashboard'));
+const Profile = lazy(() => import('./pages/profile'))
 const NotFound = lazy(() => import('./pages/notFound'));
 
 function App() {
@@ -20,9 +24,16 @@ function App() {
         <Router>
           <Suspense fallback={<p>Loading...</p>}>
             <Switch>
-              <Route path={ROUTES.SIGN_IN} component={SignIn} />
-              <Route path={ROUTES.REGISTER} component={Register} />
-              <Route path={ROUTES.DASHBOARD} component={Dashboard} />
+              <IsUserSignedIn user={user} signedInPath={ROUTES.DASHBOARD} path={ROUTES.SIGN_IN}>
+                <SignIn />
+              </IsUserSignedIn>
+              <IsUserSignedIn user={user} signedInPath={ROUTES.DASHBOARD} path={ROUTES.SIGN_IN}>
+                <Register />
+              </IsUserSignedIn>
+              <Route path={ROUTES.PROFILE} component={Profile} />
+              <ProtectedRoute user={user} exact path={ROUTES.DASHBOARD}>
+                <Dashboard />
+              </ProtectedRoute>
               <Route component={NotFound} />
             </Switch>
           </Suspense>
