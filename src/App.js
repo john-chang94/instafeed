@@ -24,10 +24,10 @@ function App() {
         <Router>
           <Suspense fallback={<p>Loading...</p>}>
             <Switch>
-              <IsUserSignedIn user={user} signedInPath={ROUTES.DASHBOARD} path={ROUTES.SIGN_IN}>
+              <IsUserSignedIn user={user} path={ROUTES.SIGN_IN}>
                 <SignIn />
               </IsUserSignedIn>
-              <IsUserSignedIn user={user} signedInPath={ROUTES.DASHBOARD} path={ROUTES.SIGN_IN}>
+              <IsUserSignedIn user={user} path={ROUTES.SIGN_IN}>
                 <Register />
               </IsUserSignedIn>
               <Route path={ROUTES.PROFILE} component={Profile} />

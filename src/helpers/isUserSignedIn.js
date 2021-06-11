@@ -1,6 +1,7 @@
 import { Route, Redirect } from 'react-router-dom';
+import * as ROUTES from '../constants/routes';
 
-export default function IsUserSignedIn({ user, signedInPath, children, ...rest }) {
+export default function IsUserSignedIn({ user, children, ...rest }) {
     return (
         <Route {...rest} render={({ location }) => {
             if (!user) {
@@ -9,7 +10,7 @@ export default function IsUserSignedIn({ user, signedInPath, children, ...rest }
             if (user) {
                 return (
                     <Redirect to={{
-                        pathname: signedInPath,
+                        pathname: ROUTES.DASHBOARD,
                         state: { from: location }
                     }}
                     />
