@@ -10,6 +10,19 @@ export async function doesUsernameExist(username) {
     return result.docs.length > 0;
 }
 
+export async function getUserByUsername(username) {
+    const result = await firebase
+        .firestore()
+        .collection('users')
+        .where('username', '==', username)
+        .get();
+
+    return result.docs.map((item) => ({
+        ...item.data(),
+        docId: item.id
+    }))
+}
+
 // Get user from firestore with userId passed from auth
 export async function getUserByUserId(userId) {
     const res = await firebase
@@ -66,31 +79,31 @@ export async function updateFollowedUserFollowers(profileDocId, signedInUserId, 
         })
 }
 
-export async function getPhotos(userId, following) {
+export async function getImages(userId, following) {
     const res = await firebase
         .firestore()
-        .collection('photos')
+        .collection('images')
         .where('userId', 'in', following)
         .get();
 
-    const userFollowedPhotos = res.docs.map((photo) => ({
-        ...photo.data(),
-        docId: photo.id
+    const userFollowedImages = res.docs.map((image) => ({
+        ...image.data(),
+        docId: image.id
     }))
 
-    const photosWithUserDetails = await Promise.all(
-        userFollowedPhotos.map(async (photo) => {
-            let userLikedPhoto = false;
-            // Check if user liked the photo
-            if (photo.likes.includes(userId)) {
-                userLikedPhoto = true;
+    const imagesWithUserDetails = await Promise.all(
+        userFollowedImages.map(async (image) => {
+            let userLikedImage = false;
+            // Check if user liked the image
+            if (image.likes.includes(userId)) {
+                userLikedImage = true;
             }
-            const user = await getUserByUserId(photo.userId);
+            const user = await getUserByUserId(image.userId);
             const { username } = user[0]; // Firebase returns an array so get first item
 
-            return { username, ...photo, userLikedPhoto };
+            return { username, ...image, userLikedImage };
         })
     )
 
-    return photosWithUserDetails;
+    return imagesWithUserDetails;
 }

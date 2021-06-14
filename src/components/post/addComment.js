@@ -17,7 +17,7 @@ export default function AddComment({ docId, comments, setComments, commentInput 
 
         return firebase
             .firestore()
-            .collection('photos')
+            .collection('images')
             .doc(docId)
             .update({
                 comments: FieldValue.arrayUnion({ displayName, comment })

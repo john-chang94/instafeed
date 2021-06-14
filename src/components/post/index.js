@@ -5,25 +5,25 @@ import Actions from './actions';
 import Footer from './footer';
 import Comments from './comments';
 
-export default function Post({ photo }) {
+export default function Post({ image }) {
     const commentInput = useRef(null);
     const handleFocus = () => commentInput.current.focus();
 
     return (
         <div className="rounded col-span-4 border bg-white border-gray-primary mb-12">
-            <Header username={photo.username} />
-            <Image src={photo.imageUrl} caption={photo.caption} />
+            <Header username={image.username} />
+            <Image src={image.imageUrl} caption={image.caption} />
             <Actions
-                docId={photo.docId}
-                totalLikes={photo.likes.length}
-                likedPhoto={photo.userLikedPhoto} // Fetched from firebase service getPhotos()
+                docId={image.docId}
+                totalLikes={image.likes.length}
+                likedImage={image.userLikedImage} // Fetched from firebase service getImages()
                 handleFocus={handleFocus}
             />
-            <Footer caption={photo.caption} username={photo.username} />
+            <Footer caption={image.caption} username={image.username} />
             <Comments 
-                docId={photo.docId}
-                comments={photo.comments}
-                createdAt={photo.createdAt}
+                docId={image.docId}
+                comments={image.comments}
+                createdAt={image.createdAt}
                 commentInput={commentInput}
             />
         </div>

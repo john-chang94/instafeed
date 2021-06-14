@@ -53,9 +53,9 @@ export function seedDatabase(firebase) {
   for (let i = 1; i <= 5; ++i) {
     firebase
       .firestore()
-      .collection('photos')
+      .collection('images')
       .add({
-        photoId: i,
+        imageId: i,
         userId: '2',
         imageSrc: `/images/users/raphael/${i}.jpg`,
         caption: 'Saint George and the Dragon',

@@ -12,7 +12,7 @@ export default function Comments({ docId, comments: allComments, createdAt, comm
                 {
                     comments.length >= 2 && (
                         <p className="text-sm text-gray-base mb-1 cursor-pointer">
-                            View all {comments.length} comments
+                            View all comments
                         </p>
                     )
                 }
