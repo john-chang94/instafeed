@@ -1,8 +1,10 @@
 import { useReducer, useEffect } from 'react';
-import { getUserByUsername } from '../../services/firebase';
+import { getUserImagesByUserId } from '../../services/firebase';
 import Header from './header';
+import Images from './images';
 
-export default function UserProfile({ username }) {
+export default function UserProfile({ user }) {
+    // Use reducer to consolidate user and images instead of having separate state
     const reducer = (state, newState) => ({ ...state, ...newState });
     const initialState = {
         profile: {},
@@ -10,18 +12,30 @@ export default function UserProfile({ username }) {
         followerCount: 0
     }
 
-    const [{ profile, imageCollection, followerCount }, dispatch] = useReducer(reducer, initialState);
+    const [{ profile, imageCollection, followerCount }, dispatch] = useReducer(
+        reducer,
+        initialState
+    );
     useReducer(reducer, initialState);
 
     useEffect(() => {
         async function getUserProfileAndImages() {
-            const [{ ... user }] = await getUserByUsername(username);
-            const images = getUserImagesByUsername(username);
+            const images = await getUserImagesByUserId(user.userId);
+            dispatch({
+                profile: user,
+                imageCollection: images,
+                followerCount: user.followers.lnegth
+            })
         }
-    }, [])
+
+        getUserProfileAndImages();
+    }, [user.username])
+
     return (
         <div>
-
+            <Header />
+            <Images images={imageCollection} />
+            hello {user.username}
         </div>
     )
 }

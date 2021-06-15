@@ -14,7 +14,7 @@ export default function Actions({ docId, totalLikes, userLikedImage, handleFocus
 
         await firebase
             .firestore()
-            .collection('images')
+            .collection('photos')
             .doc(docId)
             .update({
                 likes: toggleLiked

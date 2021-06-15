@@ -82,7 +82,7 @@ export async function updateFollowedUserFollowers(profileDocId, signedInUserId, 
 export async function getImages(userId, following) {
     const res = await firebase
         .firestore()
-        .collection('images')
+        .collection('photos')
         .where('userId', 'in', following)
         .get();
 
@@ -106,4 +106,17 @@ export async function getImages(userId, following) {
     )
 
     return imagesWithUserDetails;
+}
+
+export async function getUserImagesByUserId(userId) {
+    const result = await firebase
+        .firestore()
+        .collection('photos')
+        .where('userId', '==', userId) // Not uid because user obj does not come from auth
+        .get();
+
+        return result.docs.map((item) => ({
+            ...item.data(),
+            docId: item.id
+        }))
 }
