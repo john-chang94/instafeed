@@ -115,10 +115,10 @@ export async function getUserImagesByUserId(userId) {
         .where('userId', '==', userId) // Not uid because user obj does not come from auth
         .get();
 
-        return result.docs.map((item) => ({
-            ...item.data(),
-            docId: item.id
-        }))
+    return result.docs.map((item) => ({
+        ...item.data(),
+        docId: item.id
+    }))
 }
 
 export async function isUserFollowingProfile(signedInUsername, profileUserId) {
@@ -136,4 +136,15 @@ export async function isUserFollowingProfile(signedInUsername, profileUserId) {
     }))
 
     return response.userId;
+}
+
+export async function toggleFollow(
+    isFollowingProfile, // Bool: Does the signed in user follow the user profile
+    signedInUserDocId, // Signed in user doc ID
+    signedInUserId, // Signed in user ID
+    profileDocId, // User to follow doc ID
+    profileUserId // User to follow user ID
+) {
+    await updateSignedInUserFollowing(signedInUserDocId, profileUserId, isFollowingProfile);
+    await updateFollowedUserFollowers(profileDocId, signedInUserId, isFollowingProfile);
 }
