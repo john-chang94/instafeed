@@ -5,6 +5,7 @@ import Images from './images';
 
 export default function UserProfile({ user }) {
     // Use reducer to consolidate user and images instead of having separate state
+    // Also follower count can be updated live if someone follows another user
     const reducer = (state, newState) => ({ ...state, ...newState });
     const initialState = {
         profile: {},
@@ -24,7 +25,7 @@ export default function UserProfile({ user }) {
             dispatch({
                 profile: user,
                 imageCollection: images,
-                followerCount: user.followers.lnegth
+                followerCount: user.followers.length
             })
         }
 
@@ -33,9 +34,13 @@ export default function UserProfile({ user }) {
 
     return (
         <div>
-            <Header />
+            <Header
+                imageCount={imageCollection ? imageCollection.length : 0}
+                profile={profile}
+                followerCount={followerCount}
+                setFollowerCount={dispatch}
+            />
             <Images images={imageCollection} />
-            hello {user.username}
         </div>
     )
 }

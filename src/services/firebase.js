@@ -120,3 +120,20 @@ export async function getUserImagesByUserId(userId) {
             docId: item.id
         }))
 }
+
+export async function isUserFollowingProfile(signedInUsername, profileUserId) {
+    const result = await firebase
+        .firestore()
+        .collection('users')
+        .where('username', '==', signedInUsername)
+        .where('following', 'array-contains', profileUserId)
+        .get();
+
+    // Set response to default obj because array returns one item anyway
+    const [response = {}] = result.docs.map((item) => ({
+        ...item.data(),
+        docId: item.id
+    }))
+
+    return response.userId;
+}
