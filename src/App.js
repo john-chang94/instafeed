@@ -24,12 +24,8 @@ function App() {
         <Router>
           <Suspense fallback={<p>Loading...</p>}>
             <Switch>
-              <IsUserSignedIn user={user} path={ROUTES.SIGN_IN}>
-                <SignIn />
-              </IsUserSignedIn>
-              <IsUserSignedIn user={user} path={ROUTES.SIGN_IN}>
-                <Register />
-              </IsUserSignedIn>
+              <Route path={ROUTES.SIGN_IN} component={SignIn} />
+              <Route path={ROUTES.REGISTER} component={Register} />
               <Route path={ROUTES.PROFILE} component={Profile} />
               <ProtectedRoute user={user} exact path={ROUTES.DASHBOARD}>
                 <Dashboard />
